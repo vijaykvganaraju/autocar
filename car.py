@@ -15,6 +15,7 @@ bw2 = 26
 turningTime = 10
 velocity = 0.3 # meter(s) per second
 
+key = '' #Removed for security reasons
 trigL = 2
 echoL = 17
 trigR = 3
@@ -35,7 +36,7 @@ GPIO.setup(echoR, GPIO.IN)
 GPIO.setup(echoF, GPIO.IN)
 
 def getDirections():		#To get directions
-    url = 'https://api.thingspeak.com/channels/330275/feeds.json?api_key=6KPE66DUXE2QJ3I0&results=2'
+    url = 'https://api.thingspeak.com/channels/330275/feeds.json?api_key=' + key + '&results=2'
     req = urllib.request.Request(url)
     #parsing response
     r = urllib.request.urlopen(req).read()
