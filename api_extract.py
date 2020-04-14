@@ -1,6 +1,8 @@
 import urllib.request
 import json
-url = 'https://api.thingspeak.com/channels/330275/feeds.json?api_key=6KPE66DUXE2QJ3I0&results=2'
+
+key = '' #private key for API acccess
+url = 'https://api.thingspeak.com/channels/330275/feeds.json?api_key=' + key + '&results=2'
 req = urllib.request.Request(url)
 
 #parsing response
