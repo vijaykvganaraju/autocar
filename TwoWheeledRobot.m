@@ -289,7 +289,7 @@ classdef TwoWheeledRobot
         end
 
         
-        function [modes, times] = p2pReach(robot, currentState, targetPosition)
+        function [modes, times, angles] = p2pReach(robot, currentState, targetPosition)
             deltaTheta = robot.computeDeltaTheta(currentState, targetPosition);
             delta = 0.005;
             x0 = currentState(1);
@@ -301,38 +301,44 @@ classdef TwoWheeledRobot
             
             modes = [];
             times = [];
-            
+            angles = [];
+
             if deltaTheta == 0
                 time = sqrt((xT - x0) ^ 2 + (yT - y0) ^ 2) / (robot.R * robot.w);
                 modes = [modes, 'S'];
                 times = [times, time];
+                angles = [angles; currentState(3) + deltaTheta];
             elseif deltaTheta > 0
                 time = abs(deltaTheta) / (robot.R * robot.w);
                 [finalState, ~] = robot.turningLeft(currentState, time, delta);
                 
                 modes = [modes, 'L'];
                 times = [times, time];
-                
+                angles = [angles; currentState(3) + deltaTheta];
+
                 xL = finalState(1);
                 yL = finalState(2);
                 time = sqrt((xT - xL) ^ 2 + (yT - yL) ^ 2) / (robot.R * robot.w);
                 
                 modes = [modes, 'S'];
                 times = [times, time];
-                
+                angles = [angles; currentState(3) + deltaTheta];
+
             elseif deltaTheta < 0
                 time = abs(deltaTheta) / (robot.R * robot.w);
                 [finalState, ~] = robot.turningRight(currentState, time, delta);
                 
                 modes = [modes, 'R'];
                 times = [times, time];
-                
+                angles = [angles; currentState(3) + deltaTheta];
+
                 xL = finalState(1);
                 yL = finalState(2);
                 time = sqrt((xT - xL) ^ 2 + (yT - yL) ^ 2) / (robot.R * robot.w);
                 
                 modes = [modes, 'S'];
                 times = [times, time];
+                angles = [angles; currentState(3) + deltaTheta];
             end
         
         end
