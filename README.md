@@ -19,7 +19,7 @@ Path from source to destination is achieved using Q Learning with predefined obs
 
 
 
-To run the code, download all the file and run "main.m".
+To run the code, download all the files and run "main.m".
 
 **rows** is the number of rows in the discretized space.
  
@@ -27,7 +27,7 @@ To run the code, download all the file and run "main.m".
  
  **initial** \[x, y\] is the origin point in 2D space.
  
- **target** \[x, y\] is the origin point in 2D space.
+ **target** \[x, y\] is the destination point in 2D space.
  
  **obstacles** is a vector of 2D points which define the obstacles where the Two Wheeled Robot cannot maneuver. 
  
